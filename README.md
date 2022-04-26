@@ -1,4 +1,4 @@
-# Nest-Server-Starter
+# nest-server-starter
 
 ## Description
 

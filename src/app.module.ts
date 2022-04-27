@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostsModule } from './posts/posts.module';
+import { PostsEntity } from './posts/entity/posts.entity';
 
 import env from './config/env';
 
@@ -20,7 +21,7 @@ import env from './config/env';
       useFactory: async (service: ConfigService) => {
         return {
           type: 'mysql',
-          entities: [],
+          entities: [PostsEntity],
           host: service.get('DB_HOST'),
           port: service.get<number>('DB_PORT'),
           username: service.get('DB_USER'),

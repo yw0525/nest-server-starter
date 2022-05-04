@@ -1,4 +1,10 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseInterceptors,
+  ClassSerializerInterceptor,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -10,6 +16,7 @@ export class UserController {
 
   @ApiOperation({ summary: '注册用户' })
   @ApiResponse({ status: 201, type: [UserEntity] })
+  @UseInterceptors(ClassSerializerInterceptor)
   @Post('register')
   register(@Body() createUser: CreateUserDto) {
     return this.userService.register(createUser);

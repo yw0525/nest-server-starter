@@ -11,6 +11,7 @@ export class UserService {
     private userRepository: Repository<UserEntity>,
   ) {}
 
+  // 用户注册
   async register(createUser: CreateUserDto) {
     const { username } = createUser;
 
@@ -24,5 +25,12 @@ export class UserService {
 
     const newUser = await this.userRepository.create(createUser);
     return await this.userRepository.save(newUser);
+  }
+
+  // 查询用户
+  async findOne(id: number) {
+    return await this.userRepository.findOne({
+      where: { id },
+    });
   }
 }

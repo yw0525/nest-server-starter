@@ -19,7 +19,6 @@ import env from './config/env';
       envFilePath: [env.path],
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (service: ConfigService) => {
         return {

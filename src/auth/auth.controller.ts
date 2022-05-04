@@ -8,7 +8,7 @@ import {
   Req,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 
@@ -17,10 +17,11 @@ import { LoginDto } from './dto/login.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @ApiOperation({ summary: '登录' })
   @UseGuards(AuthGuard('local'))
   @UseInterceptors(ClassSerializerInterceptor)
   @Post('login')
   async login(@Body() user: LoginDto, @Req() req) {
-    return req.user;
+    return await this.authService.login(req.user);
   }
 }

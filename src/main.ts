@@ -18,7 +18,7 @@ async function bootstrap() {
     .setTitle('博客管理后台')
     .setDescription('博客管理后台接口文档')
     .setVersion('1.0')
-    .addBasicAuth()
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

@@ -6,6 +6,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostsModule } from './posts/posts.module';
 import { PostsEntity } from './posts/entity/posts.entity';
+import { UserModule } from './user/user.module';
+import { UserEntity } from './user/entities/user.entity';
 
 import env from './config/env';
 
@@ -21,7 +23,7 @@ import env from './config/env';
       useFactory: async (service: ConfigService) => {
         return {
           type: 'mysql',
-          entities: [PostsEntity],
+          entities: [PostsEntity, UserEntity],
           host: service.get('DB_HOST'),
           port: service.get<number>('DB_PORT'),
           username: service.get('DB_USER'),
@@ -33,6 +35,7 @@ import env from './config/env';
       },
     }),
     PostsModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -35,8 +35,10 @@ export class AuthController {
   async wechatLogin(@Headers() header, @Res() res) {
     const APPID = process.env.WECHAT_APPID;
     const redirectUri = urlencode('https://www.yueluo.club');
+
     res.redirect(
       `https://open.weixin.qq.com/connect/qrconnect?appid=${APPID}&redirect_uri=${redirectUri}&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect`,
+      // `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${APPID}&redirect_uri=${redirectUri}&response_type=code&scope=snsapi_base#wechat_redirect`,
     );
   }
 

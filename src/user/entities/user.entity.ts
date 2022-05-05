@@ -10,17 +10,17 @@ export class UserEntity {
   @Column({ length: 100 })
   username: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, default: '' })
   nickname: string;
 
   @Exclude()
   @Column()
   password: string;
 
-  @Column()
+  @Column({ default: '' })
   avatar: string;
 
-  @Column()
+  @Column({ default: '' })
   email: string;
 
   @Column({ default: null })
